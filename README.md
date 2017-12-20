@@ -5,7 +5,7 @@
 [.wad](./app.wad) file contains definiton of your API
 
 ```
--port "3000"
+-port 3000
 
 GET "/api/hello"
 -response

@@ -48,6 +48,9 @@ func (scanner *Scanner) Scan() Token {
 	} else if isLetter(character) || character == '-' {
 		scanner.Unread()
 		return scanner.scanLetter()
+	} else if isDigit(character) {
+		scanner.Unread()
+		return scanner.scanNumber()
 	}
 
 	if character == eof {
@@ -140,6 +143,26 @@ func (scanner *Scanner) scanString() Token {
 	str = str[1 : len(str)-1]
 
 	return Token{TokenString, str}
+}
+
+func (scanner *Scanner) scanNumber() Token {
+	var buffer bytes.Buffer
+	buffer.WriteRune(scanner.Read())
+
+	for {
+		character := scanner.Read()
+
+		if character == eof {
+			break;
+		} else if !isDigit(character) {
+			scanner.Unread()
+			break;
+		} else {
+			buffer.WriteRune(character)
+		}
+	}
+
+	return Token{TokenNumber, buffer.String()}
 }
 
 func (scanner *Scanner) scanJSON() Token {

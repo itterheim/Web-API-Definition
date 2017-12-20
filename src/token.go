@@ -12,6 +12,7 @@ const (
 	TokenWhiteSpace = "WHITESPACE"
 
 	TokenString = "STRING"
+	TokenNumber = "NUMBER"
 	TokenJSON   = "JSON"
 
 	TokenGET    = "GET"
@@ -53,21 +54,6 @@ func (token Token) String() string {
 		return fmt.Sprintf("%v = %.10v...", token.key, token.value)
 	}
 	return fmt.Sprintf("%v = %v", token.key, token.value)
-}
-
-// Command is language command
-type Command struct {
-	key   string
-	value *Token
-}
-
-// String returns command as string
-func (command Command) String() string {
-	value := "-"
-	if command.value != nil {
-		value = command.value.String()
-	}
-	return fmt.Sprintf("%v: %v", command.key, value)
 }
 
 func isWhiteSpace(ch rune) bool {

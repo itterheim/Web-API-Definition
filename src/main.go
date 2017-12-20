@@ -40,7 +40,6 @@ func parseDefinition(definition string) {
 	parser := NewParser(strings.NewReader(definition))
 
 	app := parser.GetApp()
-
 	createServer(&app)
 }
 

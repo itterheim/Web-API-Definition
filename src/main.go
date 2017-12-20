@@ -18,7 +18,7 @@ func main() {
 
 	for _, file := range files {
 		fileName := file.Name()
-		if strings.Contains(fileName, ".mad") {
+		if strings.Contains(fileName, ".wad") {
 			loadDefinition(fileName)
 		}
 	}
